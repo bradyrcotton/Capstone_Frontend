@@ -1,9 +1,14 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDom from 'react-dom';
 import App from './Components/app';
+import {BrowserRouter as Router} from 'react-router-dom';
 
 
-const jsxElement = <h1>Flashcard App</h1>;
-console.log(jsxElement);
-
-ReactDOM.render(<App/>, document.getElementById('root'));
+ReactDom.render(
+    <Router>
+        <React.StrictMode>
+            <App />
+        </React.StrictMode>
+    </Router>,
+    document.getElementById('root')
+);
