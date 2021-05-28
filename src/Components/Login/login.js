@@ -1,45 +1,77 @@
-import React, { useState } from "react";
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
+import React, {Component} from "react";
 import "./login.css";
+import Profile from "../Profile/profile";
+import { Switch, Route } from "react-router-dom";
 
-export default function Login(props) {
-  const [userName, setUserName] = useState("");
-  const [password, setPassword] = useState("");
+ 
 
-  function validateForm() {
-    return userName.length > 0 && password.length > 0;
+
+class Login extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = { 
+      shooterId:0,
+      userName:'',
+      password:'',
+     }
+     
+     this.handleChange = this.handleChange.bind(this);
+     this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    handleChange(event) {
+      this.setState({
+          [event.target.name]: event.target.value
+      });
+      console.log(this.props);
+      // debugger;
   }
-
-  function handleSubmit(event) {
-    event.preventDefault();
+  
+  
+    handleSubmit(event) {
     
+        
+          
+        
+    
+    event.preventDefault();
+    // debugger;
+    for (let i=0; i<this.props.shooter.length; i++){
+      if (this.state.userName === this.props.shooter[i].userName && this.state.password === this.props.shooter[i].password){
+        console.log('submit',this.props.shooter[i].id);
+        
+        let shooterId = this.props.shooter[i].id;
+          this.setState({
+            shooterId: shooterId
+          })
+        
+          return(
+            window.loctaion='/profile'
+        );
+      }
+      else{
+        alert('Invalid Username and/or Password. Please try again or register');
+      }
+    }
   }
+ 
 
-  return (
-    <div className="Login">
-      <Form onSubmit={handleSubmit}>
-        <Form.Group size="lg" controlId="email">
-          <Form.Label>Username</Form.Label>
-          <Form.Control
-            autoFocus
-            type="userName"
-            value={userName}
-            onChange={(e) => setUserName(e.target.value)}
-          />
-        </Form.Group>
-        <Form.Group size="lg" controlId="password">
-          <Form.Label>Password</Form.Label>
-          <Form.Control
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </Form.Group>
-        <Button block size="lg" type="submit" disabled={!validateForm()}>
-          Login
-        </Button>
-      </Form>
-    </div>
-  );
+  render() {
+    return (                   
+            <div>
+                <form onSubmit={this.handleSubmit}>
+                    <label>Username:</label>
+                    <input type='text' name='userName' onChange={this.handleChange} value={this.state.userName}></input>
+                    <label>Password:</label>
+                    <input type='text' name='password' onChange={this.handleChange} value={this.state.password}></input>
+                    <input type="submit" value='Login'/>
+                </form>
+              <Switch>
+              <Route path='/profile' render={props => <Profile {...props} shooter={this.state.shooterId}/>}/>
+              </Switch>
+            </div>
+    )
+}       
 }
+export default Login;

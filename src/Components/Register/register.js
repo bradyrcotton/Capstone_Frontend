@@ -30,7 +30,10 @@ class Register extends Component {
             userName: this.state.userName,
             password: this.state.password,
         }
-        this.createNewShooter(user)
+        this.createNewShooter(user);
+        window.location = '/login';
+        
+
     }
 
     render() {
