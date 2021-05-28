@@ -3,7 +3,7 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import "./login.css";
 
-export default function Login() {
+export default function Login(props) {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
 
@@ -13,7 +13,7 @@ export default function Login() {
 
   function handleSubmit(event) {
     event.preventDefault();
-    window.location ='/'
+    
   }
 
   return (
@@ -40,7 +40,6 @@ export default function Login() {
           Login
         </Button>
       </Form>
-      {console.log(userName)};
     </div>
   );
 }

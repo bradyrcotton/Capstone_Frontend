@@ -1,13 +1,17 @@
 import {Switch, Route, Redirect } from 'react-router-dom';
+import Register from './Register/register';
 import React, {Component} from 'react';
 import Login from './Login/login';
 import axios from 'axios';
 
 
+
 class App extends Component {
     state = {
         shooter: [],
-        rifle: []
+        rifle: [],
+        userName: [],
+        password: []
     }
 
     componentDidMount(){
@@ -33,6 +37,10 @@ class App extends Component {
             rifle: response.data
         })
     }
+    // async createNewShooter(user, pword){
+    //     await axios.post('http://127.0.0.1:8000/rifle/',user,pword);
+    //     this.getAllShooters();
+    // }
 
 
     render(){
@@ -41,7 +49,9 @@ class App extends Component {
                 <Switch>
                 {/* <Route path="/" exact component={Home}/> */}
                 <Route path="/login" component={Login} />
+                <Route path='/register' component={Register}/>
                 </Switch>
+                {/* <Login createNewShooter={this.createNewShooter(this)}/> */}
             </div>
         )
     }
