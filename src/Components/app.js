@@ -45,7 +45,7 @@ class App extends Component {
         return(
             <div className="App">
                 <Switch>
-                <Route path="/login" render={props => <Login {...props} shooter={this.state.shooter} getAllShooters={() => this.getAllShooters()}/>}/>
+                <Route path="/" exact render={props => <Login {...props} shooter={this.state.shooter} getAllShooters={() => this.getAllShooters()}/>}/>
                 <Route path='/register' component={Register}/>
                 <Route path='/profile' render={props => <Profile {...props} rifle={this.state.rifle} getAllRifles={() => this.getAllRifles()}/>}/>
                 </Switch>
