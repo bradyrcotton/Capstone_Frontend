@@ -47,10 +47,10 @@ class App extends Component {
                 <Switch>
                 <Route path="/login" render={props => <Login {...props} shooter={this.state.shooter} getAllShooters={() => this.getAllShooters()}/>}/>
                 <Route path='/register' component={Register}/>
-                {/* <Route path='/profile' render={props => <Profile {...props} shooter={this.state.shooter}/>}/> */}
+                <Route path='/profile' render={props => <Profile {...props} rifle={this.state.rifle} getAllRifles={() => this.getAllRifles()}/>}/>
                 </Switch>
                 {/* <Login shooter={this.state.shooter} getAllShooters={() => this.getAllShooters()}/> */}
-                {/* <Profile shooter={this.state.shooter}/> */}
+                
             </div>
         )
     }
