@@ -15,13 +15,19 @@ class App extends Component {
         password: [],
         filteredRifles: []
     }
-
     componentDidMount(){
         console.log("component did mount");
         this.getAllShooters();
         this.getAllRifles();
+        this.filterRifles.bind(this)
+        
     }
-
+    // componentDidUpdate(prevProps, prevState) {
+    //     if (prevState.filteredRifles !== this.state.filteredRifles) {
+    //         console.log('pokemons state has changed.')
+    //     }
+    // }
+    
     async getAllShooters(){
         let response = await axios.get('http://127.0.0.1:8000/shooter/');
         console.log('response', response)
@@ -81,6 +87,7 @@ class App extends Component {
 
 
     render(){
+        console.log(this.state.filteredRifles)
         return(
             <div className="App">
                 <Switch>
