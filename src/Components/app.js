@@ -12,7 +12,8 @@ class App extends Component {
         shooter: [],
         rifle: [],
         userName: [],
-        password: []
+        password: [],
+        filteredRifles: []
     }
 
     componentDidMount(){
@@ -38,7 +39,45 @@ class App extends Component {
             rifle: response.data
         })
     }
+    
+    // filterRifles(shooterId){
+    //     // this.getAllRifles();
+    //     // debugger;
+    //     for (let i=0; i<this.state.rifle.length; i++){
+    //         if (this.state.rifle[i].shooter === shooterId){
+    //             console.log('app',this.state.rifle[i].caliber);
+    //             debugger;
+    //             let r = []
+    //             r = this.state.rifle[i]
+    //             this.setState({
+    //                 filterRifles : r
+    //             })
+                
+            
+                
+    //         }
+    //     }
+    // }
 
+        filterRifles(shooterId){
+            let rifle = this.state.rifle;
+
+            let i=0;
+            let filteredRifles = this.state.rifle.filter((rifle) =>{
+                if (this.state.rifle[i].shooter === shooterId){
+                    i++
+                    return true;
+                }
+                else{
+                    i++
+                    return false;
+                }
+            })
+            this.setState({
+                filteredRifles : filteredRifles
+            })
+            
+        }
 
 
     render(){
@@ -47,9 +86,9 @@ class App extends Component {
                 <Switch>
                 <Route path="/" exact render={props => <Login {...props} shooter={this.state.shooter} getAllShooters={() => this.getAllShooters()}/>}/>
                 <Route path='/register' component={Register}/>
-                <Route path='/profile' render={props => <Profile {...props} rifle={this.state.rifle} getAllRifles={() => this.getAllRifles()}/>}/>
+                <Route path='/profile' render={props => <Profile {...props} filteredRifles={this.state.filteredRifles} filterRifles={this.filterRifles.bind(this)} getAllRifles={() => this.getAllRifles()}/>}/>
                 </Switch>
-                {/* <Login shooter={this.state.shooter} getAllShooters={() => this.getAllShooters()}/> */}
+                {/* <Profile filteredRifles={this.state.filteredRifles}/> */}
                 
             </div>
         )
