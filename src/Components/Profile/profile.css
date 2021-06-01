@@ -1,11 +1,9 @@
-h1{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    border-radius: .25rem;
-    box-shadow: 0 0 5px rgba(0, 0, 0, .3);
-    background-color: white;
-    height: 150px;
-    width: 150px;
-}
+
+.wide-screen-label-cell {
+    display: none;
+    text-align: right;
+  }
+  .mobile-screen-label-cell label {
+    font-size: 13px;
+    font-weight: bold;
+  }

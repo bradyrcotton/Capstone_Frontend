@@ -10,24 +10,23 @@ class Profile extends Component {
         this.state={
             value:'',
             rifle:[],
-            caliber:0,
-            scopeAdjustment:0,
-            ammoWeight:0,
-            barrelLength:0,
-            currentZero:0,
-            windSpeed:0,
-            boreToSight:0,
-            shotAngle:0,
-            shooter:0
+            caliber:null,
+            scopeAdjustment:null,
+            ammoWeight:null,
+            barrelLength:null,
+            currentZero:null,
+            windSpeed:null,
+            boreToSight:null,
+            shotAngle:null,
+            shooter:null
         }
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     
         this.props.filterRifles(this.props.location.state.shooter)
-        debugger;
-        console.log('filter', this.props.filteredRifles)
         
     }
+    
     async createNewRifle(rifle){
         await axios.post('http://127.0.0.1:8000/rifle/',rifle);
     }
@@ -51,42 +50,98 @@ class Profile extends Component {
         }
         this.createNewRifle(rifle)
     }
+    
 
+     
     
     render() {
-        
-        
-        return (
+            let url = "https://www.google.com/maps/embed/v1/place?key=AIzaSyDQVpu7B088F0hrDQXlroaGVSvcd0jSJaw&q=current+location&zoom=9" 
+            console.log('filter', this.props.filteredRifles)
+            debugger;
+            
+            return (
+            
+            
+            
             <div>
-                    
-                    <form onSubmit={this.handleSubmit}>
+                    <form className='blackbox-form' onSubmit={this.handleSubmit}>
+                        <table>
+                        <tbody>
+                        <tr>
+                            <td>
                         <label>Caliber:</label>
+                            </td>
+                            <td>
                         <input type='number' name='caliber' onChange={this.handleChange} value={this.state.caliber}></input>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
                         <label>Scope Adjustment:</label>
+                            </td>
+                            <td>
                         <input type='number' name='scopeAdjustment' onChange={this.handleChange} value={this.state.scopeAdjustment}></input>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
                         <label>Ammo Weight:</label>
+                            </td>
+                            <td>
                         <input type='number' name='ammoWeight' onChange={this.handleChange} value={this.state.ammoWeight}></input>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
                         <label>Barrel Length:</label>
+                            </td>
+                            <td>
                         <input type='number' name='barrelLength' onChange={this.handleChange} value={this.state.barrelLength}></input>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
                         <label>Current Zero:</label>
+                            </td>
+                            <td>
                         <input type='number' name='currentZero' onChange={this.handleChange} value={this.state.currentZero}></input>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
                         <label>Wind Speed:</label>
+                            </td>
+                            <td>
                         <input type='number' name='windSpeed' onChange={this.handleChange} value={this.state.windSpeed}></input>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
                         <label>Bore to Sight:</label>
+                            </td>
+                            <td>
                         <input type='number' name='boreToSight' onChange={this.handleChange} value={this.state.boreToSight}></input>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
                         <label>Shot Angle:</label>
+                            </td>
+                            <td>
                         <input type='number' name='shotAngle' onChange={this.handleChange} value={this.state.shotAngle}></input>
-                       
-
-
-
-
-
-
-                        <input type="submit" value='Add Rifle'/>
+                            </td>
+                        </tr>
+                        </tbody>
+                        </table>
+                        <input type="submit" value='Add Rifle Build'/>
                     </form>
+                    <iframe
+                    width="600"
+                    height="450"
+                    src={url}>
+                    </iframe>
                 </div>
-        
+            
         );
         
     }
