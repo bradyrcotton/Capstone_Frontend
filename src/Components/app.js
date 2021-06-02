@@ -5,6 +5,7 @@ import React, {Component} from 'react';
 import Login from './Login/login';
 import axios from 'axios';
 import Calculator from './Calculator/calculator';
+import Maps from './Maps/maps';
 
 
 
@@ -96,6 +97,7 @@ class App extends Component {
                 <Route path='/register' component={Register}/>
                 <Route path='/profile' render={props => <Profile {...props} filteredRifles={this.state.filteredRifles} filterRifles={this.filterRifles.bind(this)} getAllRifles={() => this.getAllRifles()}/>}/>
                 <Route path='/calculator' component={Calculator}/>
+                <Route path='/map' component={Maps}/>
                 </Switch>
                 {/* <Profile filteredRifles={this.state.filteredRifles}/> */}
                 
