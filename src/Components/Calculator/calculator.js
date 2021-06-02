@@ -6,18 +6,19 @@ class Calculator extends Component {
         this.state = { 
             drop:null
          }
-         let t = 0; // flight time to target
-         let h = 0; //drop in inches
-         let d = 500; // distance in yards      
-         let cz = 300; // current zero
-         let m = 0; // number of mil adjustment needed 
-         
+        let t = 0; // flight time to target
+        let h = 0; //drop in inches
+        let d = 500; // distance in yards      
+        let cz = 300; // current zero
+        let m = 0; // number of mil adjustment needed 
+        let c = 0; // number of "clicks" needed to adjust
+        let sc = 10; // scope type in clicks "4 or 10"
          
         t = (d*3-cz)/3020
         h= (.5*(32*(t)^2))*12
-        console.log('calc',h)
         m = h / ((d/25)*.9)
-
+        c = m*sc;
+         debugger;
     }
     render() { 
         return ( 
