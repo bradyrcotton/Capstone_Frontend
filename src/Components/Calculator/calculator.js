@@ -10,7 +10,7 @@ class Calculator extends Component {
          }
         let t = 0; // flight time to target
         let h = 0; //drop in inches
-        let d = 500; // distance in yards      
+        let d = 631; // distance in yards      
         let cz = 300; // current zero
         let m = 0; // number of mil adjustment needed 
         let c = 0; // number of "clicks" needed to adjust
@@ -18,8 +18,8 @@ class Calculator extends Component {
         let y = 0; // for converting meters to yards 
 
         let dist = getPreciseDistance(
-            {latitude:36.06663921879466, longitude:-93.72614005669182},
-            {latitude:36.067271, longitude:-93.721822}
+            {latitude:36.066631802416566, longitude:-93.72612898997339},
+            {latitude:36.06732738733582, longitude:-93.72186276953556}
             )
         y = dist * 1.0936133 // converting distance from meters to yards
         if(y !== 0){

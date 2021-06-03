@@ -1,4 +1,5 @@
 import React from "react";
+import getDistance from 'geolib/es/getDistance';
 import { getPreciseDistance } from 'geolib';
 import{
   GoogleMap,
@@ -23,10 +24,10 @@ import "@reach/combobox/styles.css";
 
 const libraries = ["places"];
 const mapContainerStyle = {
-  width:"75vw",
+  width:"100vw",
   height:"75vh",
 };
-const center ={
+const center = {
   lat:36.066631802416566,
   lng:-93.72612898997339,
 };
@@ -36,6 +37,17 @@ const options = {
   mapTypeControl: true, 
 
 }
+const clicks = {
+  t : 0, // flight time to target
+  h : 0, //drop in inches
+  d : 0, // distance in yards      
+  cz : 100, // current zero
+  m : 0, // number of mil adjustment needed 
+  c : 0, // number of "clicks" needed to adjust
+  sc : 10, // scope type in clicks "4 or 10"
+  y : 0, // for converting meters to yards 
+  dist: null, // distance
+  }
 
 export default function GMap() {
   const {isLoaded, loadError} = useLoadScript({
@@ -57,7 +69,8 @@ export default function GMap() {
   if (!isLoaded) return "Loading Maps";
 
   
-return <div>
+return (<div>
+  {console.log('selected', selected)}
   {/* <h1>
     Marker Your Target{" "}
     <span role="img" aria-label="target" >
@@ -87,21 +100,52 @@ return <div>
      {markers.map(marker => <Marker key={marker.time.toISOString()}
       position={{lat: marker.lat, lng:marker.lng }}
       onClick={() => {
-        setSelected(marker);
+        setSelected(marker)
+        clicks.dist= getPreciseDistance(
+          {latitude: marker.lat, longitude:marker.lng},
+          {latitude:36.066631802416566, longitude:-93.72612898997339},
+          
+          )
+          console.log(marker.lat, marker.lng)
+          console.log(clicks.dist)
+          clicks.t = 0 // flight time to target
+          clicks.h = 0 //drop in inches
+          clicks.d = 0 // distance in yards      
+          // clicks.cz = 0, // current zero
+          clicks.m = 0 // number of mil adjustment needed 
+          clicks.c = 0 // number of "clicks" needed to adjust
+          // clicks.sc = 0, // scope type in clicks "4 or 10"
+          clicks.y = 0 // for converting meters to yards 
+          // clicks.dist = 0, // distance
+          clicks.y = clicks.dist * 1.0936133 // converting distance from meters to yards
+          clicks.y=Math.round(clicks.y);
+          console.log('yards',clicks.y)
+          if(clicks.y !== 0){
+            clicks.d=clicks.y
+          }
+          console.log('conyards',clicks.d)
+          clicks.t = ((clicks.d*3)-clicks.cz)/3020
+          console.log('time',clicks.t)
+          clicks.h= (.5*(32*(clicks.t)^2))*12
+          console.log('drop',clicks.h)
+          clicks.m = clicks.h / ((clicks.d/25)*.9)
+          console.log('mils',clicks.m)
+          clicks.c = (clicks.m*clicks.sc)/2;
+          clicks.c=Math.round(clicks.c);
+              console.log('dist', clicks.c)
       }}
        />)}
-       {selected ? (<InfoWindow position={{lat: selected.lat, lng: selected.lng }} 
-       onCloseClick={() => {
-         setSelected(null);
-       }} 
-       >
+       {selected ? (
+       <InfoWindow position={{lat: selected.lat, lng: selected.lng }} onCloseClick={() => {setSelected(null);}}>
          <div>
-           <h2>Target Marked!</h2>
+           <h2>{clicks.c} Clicks</h2>
+           <h4>{clicks.y} Yards</h4>
            <p>Marked {formatRelative(selected.time, new Date())} </p>
-         </div>
+         </div> 
        </InfoWindow>) : null}
+
    </GoogleMap>
-</div>;
+</div>);
 }
 function Locate({panTo}) {
   return(
@@ -123,27 +167,5 @@ function Locate({panTo}) {
     </button>
   );
 }
-let t = 0; // flight time to target
-let h = 0; //drop in inches
-let d = 500; // distance in yards      
-let cz = 300; // current zero
-let m = 0; // number of mil adjustment needed 
-let c = 0; // number of "clicks" needed to adjust
-let sc = 10; // scope type in clicks "4 or 10"
-let y = 0; // for converting meters to yards 
 
-let dist = getPreciseDistance(
-    {latitude:36.06663921879466, longitude:-93.72614005669182},
-    {latitude:36.067271, longitude:-93.721822}
-    )
-y = dist * 1.0936133 // converting distance from meters to yards
-if(y !== 0){
-    d=y
-}
-t = (d*3-cz)/3020
-h= (.5*(32*(t)^2))*12
-m = h / ((d/25)*.9)
-c = m*sc;
-c=Math.round(c);
-    console.log('dist', dist)
-    debugger;
+

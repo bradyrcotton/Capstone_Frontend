@@ -8,9 +8,9 @@ h1 {
     padding: 0;
 }
 .locate {
-    position: absolute;
-    top: 4rem;
-    right: 10rem;
+    position: fixed;
+    top: 62%;
+    right: 5%;
     background: none;
     border: none;
     z-index: 10;
