@@ -5,7 +5,9 @@ import React, {Component} from 'react';
 import Login from './Login/login';
 import axios from 'axios';
 import Calculator from './Calculator/calculator';
-import Maps from './Maps/maps';
+import GMap from './Maps/maps';
+import Navigation from './Navbar/navbar';
+import './app.css'
 
 
 
@@ -90,17 +92,18 @@ class App extends Component {
 
     render(){
         console.log(this.state.filteredRifles)
+        
         return(
             <div className="App">
+                <Navigation/>
                 <Switch>
                 <Route path="/" exact render={props => <Login {...props} shooter={this.state.shooter} getAllShooters={() => this.getAllShooters()}/>}/>
                 <Route path='/register' component={Register}/>
                 <Route path='/profile' render={props => <Profile {...props} filteredRifles={this.state.filteredRifles} filterRifles={this.filterRifles.bind(this)} getAllRifles={() => this.getAllRifles()}/>}/>
                 <Route path='/calculator' component={Calculator}/>
-                <Route path='/map' component={Maps}/>
+                <Route path='/map' component={GMap}/>
                 </Switch>
                 {/* <Profile filteredRifles={this.state.filteredRifles}/> */}
-                
             </div>
         )
     }
