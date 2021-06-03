@@ -39,14 +39,15 @@ class Login extends Component {
         console.log('submit',this.props.shooter[i].id);
         let shooterId = this.props.shooter[i].id;       
         console.log('redirect');
-          // debugger;
-          if (shooterId !== 0){
-            return(
+        if (shooterId !== 0){
+          let { shooter } = this.state;
+          localStorage.setItem(shooter ='shooter', shooterId = shooterId);
+          return(
             this.props.history.push('/profile', {shooter: shooterId})
             )
           }
         }
-    }
+      }
   }
  
 

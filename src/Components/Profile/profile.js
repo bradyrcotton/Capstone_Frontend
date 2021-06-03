@@ -18,12 +18,17 @@ class Profile extends Component {
             boreToSight:null,
             shotAngle:null,
             shooter:null,
+            shooterId:" "
             
         }
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-    
-        this.props.filterRifles(this.props.location.state.shooter)
+        let shooterId = localStorage.getItem('shooter');
+        this.setState({ shooterId : shooterId });
+        console.log('locsl', this.state.shooterId)
+        debugger;
+        let pshooterId = parseInt(shooterId)
+        this.props.filterRifles(pshooterId)
         
     }
     
@@ -49,6 +54,7 @@ class Profile extends Component {
             shooter: this.props.location.state.shooter
         }
         this.createNewRifle(rifle)
+        
     }
     
     
@@ -57,7 +63,6 @@ class Profile extends Component {
     render() {
              
             console.log('filter', this.props.filteredRifles)
-            debugger;
             return (
             <div>
                     <form className='blackbox-form' onSubmit={this.handleSubmit}>
