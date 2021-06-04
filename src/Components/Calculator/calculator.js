@@ -6,38 +6,130 @@ class Calculator extends Component {
     constructor(props) {
         super(props);
         this.state = { 
-            drop:null
+            t : 0, // flight time to target
+            h : 0, //drop in inches
+            d : 631, // distance in yards      
+            cz : 100, // current zero
+            m : 0, // number of mil adjustment needed 
+            c : 0, // number of "clicks" needed to adjust
+            sc : 10, // scope type in clicks "4 or 10"
+            y : 0, // for converting meters to yards 
+            shooterId : 0,
+            bTable: [],
          }
-        let t = 0; // flight time to target
-        let h = 0; //drop in inches
-        let d = 631; // distance in yards      
-        let cz = 300; // current zero
-        let m = 0; // number of mil adjustment needed 
-        let c = 0; // number of "clicks" needed to adjust
-        let sc = 10; // scope type in clicks "4 or 10"
-        let y = 0; // for converting meters to yards 
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.calculate=this.calculate.bind(this);
+        this.addNewItem=this.addNewItem.bind(this);
 
-        let dist = getPreciseDistance(
-            {latitude:36.066631802416566, longitude:-93.72612898997339},
-            {latitude:36.06732738733582, longitude:-93.72186276953556}
-            )
-        y = dist * 1.0936133 // converting distance from meters to yards
-        if(y !== 0){
-            d=y
+        let shooterId = localStorage.getItem('shooter');
+        this.setState({ shooterId : shooterId });
+        let pshooterId = parseInt(shooterId)
+        this.props.filterRifles(pshooterId)
+        console.log('filter',this.props.filteredRifles)
+    }
+    addToStorage(id){
+        debugger;
+        localStorage.setItem('rifle', id );
+}
+        
+ballisticsTable(){
+    for (let i=0; i < 41; i++){
+        let r = 25*i
+        if (r === 0){
+            r = 25
         }
-        t = (d*3-cz)/3020
-        h= (.5*(32*(t)^2))*12
-        m = h / ((d/25)*.9)
-        c = m*sc;
-        c=Math.round(c);
-            console.log('dist', dist)
-            debugger;
+        // debugger;
+        this.calculate(r)
+        
+    }
+    // <div>
+    //     {this.state.bTable.map(yards) => (yards)}
+    // </div>
+}
+addNewItem = (c) => {
+    let {bTable} = this.state;
+    bTable.push(c);
+    console.log('btable',this.state.bTable)
+}
+
+calculate(range){
+        let t = this.state.t; // flight time to target
+        let h = this.state.h; //drop in inches
+        let d = range; // distance in yards      
+        let cz = this.state.cz; // current zero
+        let m = this.state.m; // number of mil adjustment needed 
+        let c = this.state.c; // number of "clicks" needed to adjust
+        let sc = this.state.sc; // scope type in clicks "4 or 10"
+         
+    
+
+    t = (d*3-cz)/3020
+    h= (.5*(32*(t)^2))*12
+    m = h / ((d/25)*.9)
+    c = m*sc;
+    c=Math.round(c);
+        // debugger;
+    this.setState({
+        c:c
+    })
+    console.log(c)
+    this.addNewItem(c)
+}
+    handleChange(event) {
+        this.setState({
+            [event.target.name]: event.target.value
+        });
+    }
+    handleSubmit(event){
+        event.preventDefault();
+        this.setState({d:this.state.d})
+            
+        
     }
     render() { 
         return ( 
-            <h1>Calculator</h1>
+            <div>
+                {/* <h1>Calculator</h1> */}
+            <form className='blackbox-form' onSubmit={this.handleSubmit}>
+                        <table>
+                        <tbody>
+                        <tr>
+                            <td>
+                        <label>Range:</label>
+                            </td>
+                            <td>
+                        <input type='number' name='d' onChange={this.handleChange} value={this.state.d}></input>
+                            </td>
+                        </tr>
+                        </tbody>
+                        </table>
+                        <input type="submit" value='Calculate' onClick={() =>this.calculate(this.state.d)}/>
+                        </form>
+                        <h2>Adjustment for Range: {this.state.c} </h2>
+                        <ul>
+                            {this.props.filteredRifles.map((rifles, index) =>(
+                                <button onClick={() => this.addToStorage(rifles.id)}>
+                                    Rifle, {rifles.id} 
+                                </button>
+                            ))}
+                        </ul>
+                        <button onClick={() => this.ballisticsTable()}>Table</button>
+                        </div>
          );
     }
 }
  
 export default Calculator ;
+
+
+
+
+// let t = 0; // flight time to target
+        // let h = 0; //drop in inches
+        // let d = 631; // distance in yards      
+        // let cz = 300; // current zero
+        // let m = 0; // number of mil adjustment needed 
+        // let c = 0; // number of "clicks" needed to adjust
+        // let sc = 10; // scope type in clicks "4 or 10"
+        // let y = 0; // for converting meters to yards 

@@ -8,6 +8,7 @@ import Calculator from './Calculator/calculator';
 import GMap from './Maps/maps';
 import Navigation from './Navbar/navbar';
 import './app.css'
+import Dope from './Dope/dope';
 
 
 
@@ -49,26 +50,6 @@ class App extends Component {
             rifle: response.data
         })
     }
-    
-    // filterRifles(shooterId){
-    //     // this.getAllRifles();
-    //     // debugger;
-    //     for (let i=0; i<this.state.rifle.length; i++){
-    //         if (this.state.rifle[i].shooter === shooterId){
-    //             console.log('app',this.state.rifle[i].caliber);
-    //             debugger;
-    //             let r = []
-    //             r = this.state.rifle[i]
-    //             this.setState({
-    //                 filterRifles : r
-    //             })
-                
-            
-                
-    //         }
-    //     }
-    // }
-
         filterRifles(shooterId){
             let rifle = this.state.rifle;
 
@@ -100,10 +81,10 @@ class App extends Component {
                 <Route path="/" exact render={props => <Login {...props} shooter={this.state.shooter} getAllShooters={() => this.getAllShooters()}/>}/>
                 <Route path='/register' component={Register}/>
                 <Route path='/profile' render={props => <Profile {...props} filteredRifles={this.state.filteredRifles} filterRifles={this.filterRifles.bind(this)} getAllRifles={() => this.getAllRifles()}/>}/>
-                <Route path='/calculator' component={Calculator}/>
-                <Route path='/map' component={GMap}/>
+                <Route path='/calculator' render={props => <Calculator {...props} filteredRifles={this.state.filteredRifles} filterRifles={this.filterRifles.bind(this)} getAllRifles={() => this.getAllRifles()}/> }/>
+                <Route path='/map' render={props => <GMap {...props} filteredRifles={this.state.filteredRifles}/>}/>
+                <Route path='/dope' component={Dope}/>
                 </Switch>
-                {/* <Profile filteredRifles={this.state.filteredRifles}/> */}
             </div>
         )
     }

@@ -26,12 +26,14 @@ class Profile extends Component {
         let shooterId = localStorage.getItem('shooter');
         this.setState({ shooterId : shooterId });
         console.log('locsl', this.state.shooterId)
-        debugger;
         let pshooterId = parseInt(shooterId)
         this.props.filterRifles(pshooterId)
         
     }
-    
+    addToStorage(id){
+        debugger;
+        localStorage.setItem('rifle', id );
+}
     async createNewRifle(rifle){
         await axios.post('http://127.0.0.1:8000/rifle/',rifle);
     }
@@ -58,9 +60,12 @@ class Profile extends Component {
     }
     
     
-        
+
+
+render() {
     
-    render() {
+                 let rifles = [this.props.filteredRifles];
+                
              
             console.log('filter', this.props.filteredRifles)
             return (
@@ -136,6 +141,15 @@ class Profile extends Component {
                         </table>
                         <input type="submit" value='Add Rifle Build'/>
                     </form>
+                    <div>
+                        <ul>
+                            {this.props.filteredRifles.map((rifles, index) =>(
+                                <button onClick={() => this.addToStorage(rifles.id)}>
+                                    Rifle, {rifles.id} 
+                                </button>
+                            ))}
+                        </ul>
+                    </div>
                     
                 </div>
         );

@@ -37,6 +37,7 @@ const options = {
   mapTypeControl: true, 
 
 }
+
 const clicks = {
   t : 0, // flight time to target
   h : 0, //drop in inches
@@ -56,6 +57,9 @@ export default function GMap() {
   });
   const [markers, setMarkers] = React.useState([]);
   const [selected, setSelected] = React.useState(null);
+
+  
+
 
   const mapRef = React.useRef();
   const onMapLoad = React.useCallback((map) => {
@@ -167,5 +171,6 @@ function Locate({panTo}) {
     </button>
   );
 }
+
 
 

@@ -1,5 +1,6 @@
 import { Navbar, Nav, Container } from 'react-bootstrap'
 import Logo from '../Images/logo.png'
+import './navbar.css'
 
 
 const Navigation = () => {
@@ -9,11 +10,12 @@ const Navigation = () => {
                     <Navbar.Toggle aria-controls='responive-navbar-nav' />
                     <Navbar.Collapse id='responsive-navbar-nav'>
                         <Nav>
-                            {/* <Nav.Link to="/"><img src={Logo} alt="logo" className="logo" /></Nav.Link> */}
+                            <Nav.Link to="/"><img src={Logo} alt="logo" className="logo" /></Nav.Link>
                             <Nav.Link href='/'>Login</Nav.Link>
                             <Nav.Link href='/profile'>Profile</Nav.Link>
                             <Nav.Link href='/map'>Map</Nav.Link>
                             <Nav.Link href='/calculator'>Calculator</Nav.Link>
+                            <Nav.Link href='/dope'>Dope</Nav.Link>
                         </Nav>
                     </Navbar.Collapse>
                 </Container>
