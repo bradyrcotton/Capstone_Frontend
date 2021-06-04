@@ -1,7 +1,5 @@
 import React, {Component} from "react";
 import "./login.css";
-import Profile from "../Profile/profile";
-import { Switch, Route, Link, Redirect } from "react-router-dom";
 
  
 
@@ -54,7 +52,7 @@ class Login extends Component {
   render() {
     return (                   
             <div>
-                <form  onSubmit={this.handleSubmit}>
+                <form className='login'  onSubmit={this.handleSubmit}>
                     <label>Username:</label>
                     <input type='text' name='userName' onChange={this.handleChange} value={this.state.userName}></input>
                     <label>Password:</label>

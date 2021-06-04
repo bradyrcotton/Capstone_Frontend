@@ -20,7 +20,8 @@ class App extends Component {
         rifle: [],
         userName: [],
         password: [],
-        filteredRifles: []
+        filteredRifles: [],
+        bTable: []
     }
     componentDidMount(){
         console.log("component did mount");
@@ -71,12 +72,14 @@ class App extends Component {
             })
             
         }
+        
 
 
     render(){
         console.log(this.state.filteredRifles)
         
         return(
+            
             <div className="App">
                 <Navigation/>
                 <Switch>

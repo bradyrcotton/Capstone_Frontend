@@ -74,7 +74,7 @@ calculate(range){
     t = (d*3-cz)/3020
     h= (.5*(32*(t)^2))*12
     m = h / ((d/25)*.9)
-    c = m*sc;
+    c = (m*sc)/2;
     c=Math.round(c);
         // debugger;
     this.setState({
@@ -119,7 +119,7 @@ calculate(range){
                         </table>
                         <input type="submit" value='Calculate' onClick={() =>this.calculate(this.state.d)}/>
                         </form>
-                        <h2>Adjustment for Range: {this.state.c} </h2>
+                        <h2>Adjustment for Range: {this.state.c} Clicks </h2>
                         <ul>
                             {this.props.filteredRifles.map((rifles, index) =>(
                                 <button onClick={() => this.addToStorage(rifles.id)}>
@@ -128,24 +128,22 @@ calculate(range){
                             ))}
                         </ul>
                         <button onClick={() => this.ballisticsTable()}>Table</button>
-                            {this.state.bTable.map((ranges, index )=> (
                                 <table className="table table-dark table-striped">
                                     <thead>
                                     <tr>
                                         <th>yards</th>
                                         <th>clicks</th>
                                     </tr>
+                                    </thead>
+                                    {this.state.bTable.map((ranges, index )=> (
                                     <tbody>
                                         <tr>
                                             <td>{index * 25}</td>
-                                        </tr>
-                                        <tr>
                                             <td>{[ranges]}</td>
                                         </tr>
                                     </tbody>
-                                    </thead>
-                                </table>
                                 ))}
+                                </table>
                         </div>
          );
     }
