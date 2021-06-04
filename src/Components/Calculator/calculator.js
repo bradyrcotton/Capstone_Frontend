@@ -16,6 +16,7 @@ class Calculator extends Component {
             y : 0, // for converting meters to yards 
             shooterId : 0,
             bTable: [],
+            yards: [],
          }
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -36,11 +37,13 @@ class Calculator extends Component {
 ballisticsTable(){
     for (let i=0; i < 41; i++){
         let r = 25*i
+        this.rangeCardYards(r)
         if (r === 0){
             r = 25
         }
         // debugger;
         this.calculate(r)
+       
         
     }
     // <div>
@@ -52,7 +55,11 @@ addNewItem = (c) => {
     bTable.push(c);
     console.log('btable',this.state.bTable)
 }
-
+rangeCardYards = (r) => {
+    let {yards} = this.state;
+    yards.push(r);
+    console.log('yards', this.state.yards)
+}
 calculate(range){
         let t = this.state.t; // flight time to target
         let h = this.state.h; //drop in inches
@@ -83,10 +90,16 @@ calculate(range){
     }
     handleSubmit(event){
         event.preventDefault();
-        this.setState({d:this.state.d})
-            
-        
+        this.setState({d:this.state.d})   
     }
+    // mapRange(){
+    //     return this.state.bTable.map(range =>
+    //         <Range
+    //         key={range}
+    //         range={range}
+    //         />
+    //         );
+    // }
     render() { 
         return ( 
             <div>
@@ -115,11 +128,29 @@ calculate(range){
                             ))}
                         </ul>
                         <button onClick={() => this.ballisticsTable()}>Table</button>
+                            {this.state.bTable.map((ranges, index )=> (
+                                <table className="table table-dark table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th>yards</th>
+                                        <th>clicks</th>
+                                    </tr>
+                                    <tbody>
+                                        <tr>
+                                            <td>{index * 25}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>{[ranges]}</td>
+                                        </tr>
+                                    </tbody>
+                                    </thead>
+                                </table>
+                                ))}
                         </div>
          );
     }
 }
- 
+
 export default Calculator ;
 
 

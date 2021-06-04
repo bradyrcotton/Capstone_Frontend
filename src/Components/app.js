@@ -7,8 +7,10 @@ import axios from 'axios';
 import Calculator from './Calculator/calculator';
 import GMap from './Maps/maps';
 import Navigation from './Navbar/navbar';
-import './app.css'
+import './app.css';
 import Dope from './Dope/dope';
+import Logout from './logout';
+
 
 
 
@@ -84,6 +86,7 @@ class App extends Component {
                 <Route path='/calculator' render={props => <Calculator {...props} filteredRifles={this.state.filteredRifles} filterRifles={this.filterRifles.bind(this)} getAllRifles={() => this.getAllRifles()}/> }/>
                 <Route path='/map' render={props => <GMap {...props} filteredRifles={this.state.filteredRifles}/>}/>
                 <Route path='/dope' component={Dope}/>
+                <Route path="/logout" component={Logout} />
                 </Switch>
             </div>
         )
