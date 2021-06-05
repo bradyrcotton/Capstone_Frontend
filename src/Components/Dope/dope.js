@@ -27,17 +27,25 @@ class Dope extends Component {
         await axios.post('http://127.0.0.1:8000/dope/',dope);
     }
     dopeBook(){
-        this.props.getAllDope()
-        this.props.filterDope(this.state.shooter)
-        this.setState({
-            filteredDope : this.props.filteredDope
-        });
+        let pshooter = localStorage.getItem('shooter');
+        let shooter = parseInt(pshooter)
+        console.log('SHOOTER',shooter)
+        if(shooter != 0){
+        debugger;
+        this.props.filterDope(pshooter)
+        }
+        // this.props.getAllDope()
+        // this.props.filterDope(this.state.shooter)
+        // this.setState({
+        //     filteredDope : this.props.filteredDope
+        // });
     }
     handleChange(event) {
         this.setState({
             [event.target.name]: event.target.value
         })
     }
+    
     handleSubmit(event){
         event.preventDefault();
         const dope = {
@@ -73,8 +81,14 @@ class Dope extends Component {
     //         this.props.filteredDope
     //         );
     }
-    
-    
+    refreshPage() {
+        window.location.reload();
+      }
+      async deleteDope(dopeId){
+          console.log('dopeId',dopeId)
+        await axios.delete('http://127.0.0.1:8000/dope/'+dopeId+'/');
+        this.props.getAllDope();
+    }
     render() { 
         
       console.log('fdope',this.props.filteredDope)
@@ -120,6 +134,7 @@ class Dope extends Component {
                 <input className="add" type="submit" value='Add Dope'/>
             </form>
             <button onClick={() => this.dopeBook()}>Dope Table</button>
+            <button onClick={this.refreshPage}>Update</button>
             <table className="table table-dark table-striped">
                                     <thead>
                                     <tr>
@@ -129,13 +144,14 @@ class Dope extends Component {
                                         <th>Current Zero</th>
                                     </tr>
                                     </thead>
-                                    {this.state.filteredDope.map((dope, index )=> (
+                                    {this.props.filteredDope.map((dope, index )=> (
                                     <tbody>
                                         <tr>
                                             <td>{dope.caliber}</td> 
                                             <td>{dope.scopeAdjustment}</td>
                                             <td>{dope.distance}</td> 
                                             <td>{dope.currentZero}</td>  
+                                            <td><button onClick={() => this.deleteDope(dope.id)}>Delete </button> </td>
                                         </tr>
                                     </tbody>
                                 ))} 
