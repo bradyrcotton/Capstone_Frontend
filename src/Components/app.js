@@ -21,29 +21,33 @@ class App extends Component {
         userName: [],
         password: [],
         filteredRifles: [],
-        bTable: []
+        bTable: [],
+        dope: [],
+        filteredDope: []
     }
     componentDidMount(){
         console.log("component did mount");
         this.getAllShooters();
         this.getAllRifles();
-        this.filterRifles.bind(this)
+        this.filterRifles.bind(this);
+        this.getAllDope();
+        // this.filterDope.bind(this);
         
     }
     // componentDidUpdate(prevProps, prevState) {
-    //     if (prevState.filteredRifles !== this.state.filteredRifles) {
-    //         console.log('pokemons state has changed.')
-    //     }
-    // }
-    
-    async getAllShooters(){
-        let response = await axios.get('http://127.0.0.1:8000/shooter/');
-        console.log('response', response)
-        this.setState({
-            shooter: response.data
-        })
-        console.log('state',this.state.shooter);
-    }
+        //     if (prevState.filteredRifles !== this.state.filteredRifles) {
+            //         console.log('pokemons state has changed.')
+            //     }
+            // }
+            
+            async getAllShooters(){
+                let response = await axios.get('http://127.0.0.1:8000/shooter/');
+                console.log('response', response)
+                this.setState({
+                    shooter: response.data
+                })
+                console.log('state',this.state.shooter);
+            }
 
     async getAllRifles(){
         let response = await axios.get('http://127.0.0.1:8000/rifle/');
@@ -72,13 +76,44 @@ class App extends Component {
             })
             
         }
+        async getAllDope(){
+            let response = await axios.get('http://127.0.0.1:8000/dope/');
+            console.log('dopeResponse', response)
+            this.setState({
+                
+                dope: response.data
+            })
+        }
+        filterDope(shooterId){
+            debugger;
+            let intShooter = parseInt(shooterId)
+            let dope = this.state.dope;
+            let i=0;
+            let filteredDope = this.state.dope.filter((dope) =>{
+                if (this.state.dope[i].shooter === intShooter){
+                    i++
+                    return true;
+                }
+                else{
+                    i++
+                    return false;
+                }
+            })
+            this.setState({
+                filteredDope : filteredDope
+            })
+            console.log('filteredDope',this.state.filteredDope)
+        }
         
 
 
     render(){
-        console.log(this.state.filteredRifles)
+        
         
         return(
+            
+            
+            
             
             <div className="App">
                 <Navigation/>
@@ -88,7 +123,7 @@ class App extends Component {
                 <Route path='/profile' render={props => <Profile {...props} filteredRifles={this.state.filteredRifles} filterRifles={this.filterRifles.bind(this)} getAllRifles={() => this.getAllRifles()}/>}/>
                 <Route path='/calculator' render={props => <Calculator {...props} filteredRifles={this.state.filteredRifles} filterRifles={this.filterRifles.bind(this)} getAllRifles={() => this.getAllRifles()}/> }/>
                 <Route path='/map' render={props => <GMap {...props} filteredRifles={this.state.filteredRifles}/>}/>
-                <Route path='/dope' component={Dope}/>
+                <Route path='/dope' render={props => <Dope {...props} filterDope={this.filterDope.bind(this)}  filteredDope={this.state.filteredDope} getAllDope={() =>this.getAllDope()} />}/>
                 <Route path="/logout" component={Logout} />
                 </Switch>
             </div>
@@ -96,3 +131,4 @@ class App extends Component {
     }
 }
 export default App;
+

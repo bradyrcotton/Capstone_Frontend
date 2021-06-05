@@ -11,34 +11,27 @@ class Dope extends Component {
             distance: 0,
             currentZero: 0,
             shooter: 0,
+            filteredDope: [],
          }
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         
         
             
-            // console.log(
-            //     'inside callback',
-            //     this.state.shooter
-            //     )
-            // );
-            // console.log(
-            //     'outside callback',
-            //     this.state.shooter
-            //     );
+          
     };
     
-    // componentDidUpdate(prevProps, prevState){
-    //     debugger;
-    //     console.log(
-    //         'component did update',
-    //         this.state.shooter
-    //     )
     
-    // }
     async createNewDope(dope){
         debugger;
         await axios.post('http://127.0.0.1:8000/dope/',dope);
+    }
+    dopeBook(){
+        this.props.getAllDope()
+        this.props.filterDope(this.state.shooter)
+        this.setState({
+            filteredDope : this.props.filteredDope
+        });
     }
     handleChange(event) {
         this.setState({
@@ -58,26 +51,34 @@ class Dope extends Component {
         console.log('dope',dope)
         let pshooter = localStorage.getItem('shooter');
         let shooter = parseInt(pshooter)
+        console.log('SHOOTER',shooter)
+        if(shooter != 0){
+        debugger;
+        this.props.filterDope(pshooter)
+        }
         this.setState({shooter: shooter});
         if (this.state.shooter === 0){
-            debugger;
             alert('If you are sure the data you entered is correct press Add Dope again.')
         }
           
         if (this.state.shooter != 0){    
         this.createNewDope(dope)
         alert('Dope Added')
+        this.props.getAllDope()
     }
+    
+        
+    // console.log(
+    //         'outside callback',
+    //         this.props.filteredDope
+    //         );
     }
     
     
     render() { 
         
+      console.log('fdope',this.props.filteredDope)
         
-        console.log(
-                'outside callback',
-                this.state.shooter
-                );
         return ( <div>
             <form className='blackbox-form' onSubmit={this.handleSubmit}>
                 <table>
@@ -118,6 +119,27 @@ class Dope extends Component {
                 </table>
                 <input className="add" type="submit" value='Add Dope'/>
             </form>
+            <button onClick={() => this.dopeBook()}>Dope Table</button>
+            <table className="table table-dark table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th>Caliber</th>
+                                        <th>Scope Adjustments</th>
+                                        <th>Distance</th>
+                                        <th>Current Zero</th>
+                                    </tr>
+                                    </thead>
+                                    {this.state.filteredDope.map((dope, index )=> (
+                                    <tbody>
+                                        <tr>
+                                            <td>{dope.caliber}</td> 
+                                            <td>{dope.scopeAdjustment}</td>
+                                            <td>{dope.distance}</td> 
+                                            <td>{dope.currentZero}</td>  
+                                        </tr>
+                                    </tbody>
+                                ))} 
+                                </table>
             </div> 
             );
     }
