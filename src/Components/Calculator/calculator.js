@@ -17,6 +17,7 @@ class Calculator extends Component {
             shooterId : 0,
             bTable: [],
             yards: [],
+            blank:''
          }
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -92,14 +93,9 @@ calculate(range){
         event.preventDefault();
         this.setState({d:this.state.d})   
     }
-    // mapRange(){
-    //     return this.state.bTable.map(range =>
-    //         <Range
-    //         key={range}
-    //         range={range}
-    //         />
-    //         );
-    // }
+    refreshPage() {
+        window.location.reload();
+      }
     render() { 
         return ( 
             <div>
@@ -112,7 +108,7 @@ calculate(range){
                         <label>Range:</label>
                             </td>
                             <td>
-                        <input type='number' name='d' onChange={this.handleChange} value={this.state.d}></input>
+                        <input type='number' name='blank' onChange={this.handleChange} value={this.state.blank}></input>
                             </td>
                         </tr>
                         </tbody>
@@ -128,6 +124,7 @@ calculate(range){
                             ))}
                         </ul>
                         <button onClick={() => this.ballisticsTable()}>Table</button>
+                        <button onClick={this.refreshPage}>Clear</button>
                                 <table className="table table-dark table-striped">
                                     <thead>
                                     <tr>
@@ -154,11 +151,3 @@ export default Calculator ;
 
 
 
-// let t = 0; // flight time to target
-        // let h = 0; //drop in inches
-        // let d = 631; // distance in yards      
-        // let cz = 300; // current zero
-        // let m = 0; // number of mil adjustment needed 
-        // let c = 0; // number of "clicks" needed to adjust
-        // let sc = 10; // scope type in clicks "4 or 10"
-        // let y = 0; // for converting meters to yards 

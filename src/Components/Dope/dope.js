@@ -15,16 +15,7 @@ class Dope extends Component {
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         
-        let pshooter = localStorage.getItem('shooter');
-        let shooter = parseInt(pshooter)
-        this.setState({shooter: shooter});
-        setTimeout(() => {
-            console.log(
-                'timeout',
-                this.state.shooter
-                );
-            }, 1000);
-            debugger;
+        
             
             // console.log(
             //     'inside callback',
@@ -46,7 +37,8 @@ class Dope extends Component {
     
     // }
     async createNewDope(dope){
-        await axios.post('http://127.0.0.1:8000/rifle/',dope);
+        debugger;
+        await axios.post('http://127.0.0.1:8000/dope/',dope);
     }
     handleChange(event) {
         this.setState({
@@ -64,12 +56,23 @@ class Dope extends Component {
 
         }
         console.log('dope',dope)
+        let pshooter = localStorage.getItem('shooter');
+        let shooter = parseInt(pshooter)
+        this.setState({shooter: shooter});
+        if (this.state.shooter === 0){
+            debugger;
+            alert('If you are sure the data you entered is correct press Add Dope again.')
+        }
+          
+        if (this.state.shooter != 0){    
         this.createNewDope(dope)
-        
+        alert('Dope Added')
+    }
     }
     
     
     render() { 
+        
         
         console.log(
                 'outside callback',
@@ -84,7 +87,7 @@ class Dope extends Component {
                 <label>Caliber:</label>
                     </td>
                     <td>
-                <input type='number' name='caliber' onChange={this.handleChange} value={this.state.caliber}></input>
+                <input className="box" type='number' name='caliber' onChange={this.handleChange} value={this.state.caliber}></input>
                     </td>
                 </tr>
                 <tr>
@@ -92,7 +95,7 @@ class Dope extends Component {
                 <label>Scope Adjustment:</label>
                     </td>
                     <td>
-                <input type='number' name='scopeAdjustment' onChange={this.handleChange} value={this.state.scopeAdjustment}></input>
+                <input className="box" type='number' name='scopeAdjustment' onChange={this.handleChange} value={this.state.scopeAdjustment}></input>
                     </td>
                 </tr>
                 <tr>
@@ -100,7 +103,7 @@ class Dope extends Component {
                 <label>Distance:</label>
                     </td>
                     <td>
-                <input type='number' name='distance' onChange={this.handleChange} value={this.state.distance}></input>
+                <input className="box" type='number' name='distance' onChange={this.handleChange} value={this.state.distance}></input>
                     </td>
                 </tr>
                 <tr>
@@ -108,12 +111,12 @@ class Dope extends Component {
                 <label>Current Zero:</label>
                     </td>
                     <td>
-                <input type='number' name='currentZero' onChange={this.handleChange} value={this.state.currentZero}></input>
+                <input className="box" type='number' name='currentZero' onChange={this.handleChange} value={this.state.currentZero}></input>
                     </td>
                 </tr>
                 </tbody>
                 </table>
-                <input type="submit" value='Add Dope'/>
+                <input className="add" type="submit" value='Add Dope'/>
             </form>
             </div> 
             );

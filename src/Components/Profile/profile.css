@@ -10,6 +10,7 @@
  
 body {
 	font-family :Arial;
+  
 }
 #map-layer {
 	margin: 20px 0px;
@@ -21,11 +22,27 @@ body {
     padding: 10px 40px;
     border: #3672bb 1px solid;
     border-radius: 2px;
-    color: #FFF;
+    color: rgb(54, 238, 8);
     font-size: 0.9em;
     cursor:pointer;
     display:block;
 }
 #btnAction:disabled {
     background: #6c99d2;
+}
+.blackbox-form{
+  color:#d2ccbc;
+  font-size: 20px;
+  
+}
+.box{
+  background-color: #343a40;
+}
+.add{
+  color: #899da0;
+  background-color: #343a40;
+  border-radius: 10px;
+  margin-top: 10px;
+  margin-left: 250px;
+  position: relative;
 }

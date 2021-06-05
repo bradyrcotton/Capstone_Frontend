@@ -10,8 +10,13 @@ h1 {
 .locate {
     position: fixed;
     top: 62%;
-    right: 5%;
+    right: 1%;
     background: none;
     border: none;
     z-index: 10;
 }
+.login{
+    color: #8097a0;
+  }
+  
+  

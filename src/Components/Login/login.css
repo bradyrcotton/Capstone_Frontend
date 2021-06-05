@@ -1,9 +1,14 @@
 
     body {
-      background-color: #2a0202;
-    }
+      background-image: url("../Images/login3.jpg");
+      height: 100%;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: fill;
+     }
     .login {
-      padding: 60px 0;
+      padding-top: 10%;
+      padding-left: 35%;
     }
   
     .login form {
@@ -11,3 +16,29 @@
       max-width: 320px;
       margin-top: 100px;
     }
+    
+    .username{
+      font-size: 50px;
+      
+    }
+    .password{
+      font-size: 50px;
+    }
+    .lButton{
+      color: #899da0;
+      background-color: #343a40;
+      border-radius: 10px;
+      
+    }
+    .pBox{
+      background-color: #343a40;
+      margin-left: 32px;
+      
+    }
+    .uBox{
+      background-color: #343a40;
+      color: green;
+      margin-left: 15px;
+      
+    }
+    

@@ -31,10 +31,14 @@ const center = {
   lat:36.066631802416566,
   lng:-93.72612898997339,
 };
+const mapOptions = {
+  mapTypeId: 'satellite'
+};
 const options = {
   disableDefaultUI: true,
   zoomControl: true,
-  mapTypeControl: true, 
+  mapTypeControl: true,
+  satellite: true, 
 
 }
 
@@ -149,6 +153,7 @@ return (<div>
        </InfoWindow>) : null}
 
    </GoogleMap>
+   <button className='add' onClick={refreshPage}>Reset</button>
 </div>);
 }
 function Locate({panTo}) {
@@ -169,8 +174,11 @@ function Locate({panTo}) {
     🎯
     </span>
     </button>
+    
   );
 }
 
-
+function refreshPage() {
+  window.location.reload();
+}
 

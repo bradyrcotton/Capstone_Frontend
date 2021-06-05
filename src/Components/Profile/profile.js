@@ -78,7 +78,7 @@ render() {
                         <label>Caliber:</label>
                             </td>
                             <td>
-                        <input type='number' name='caliber' onChange={this.handleChange} value={this.state.caliber}></input>
+                        <input className="box" type='number' name='caliber' onChange={this.handleChange} value={this.state.caliber}></input>
                             </td>
                         </tr>
                         <tr>
@@ -86,7 +86,7 @@ render() {
                         <label>Scope Adjustment:</label>
                             </td>
                             <td>
-                        <input type='number' name='scopeAdjustment' onChange={this.handleChange} value={this.state.scopeAdjustment}></input>
+                        <input className="box" type='number' name='scopeAdjustment' onChange={this.handleChange} value={this.state.scopeAdjustment}></input>
                             </td>
                         </tr>
                         <tr>
@@ -94,7 +94,7 @@ render() {
                         <label>Ammo Weight:</label>
                             </td>
                             <td>
-                        <input type='number' name='ammoWeight' onChange={this.handleChange} value={this.state.ammoWeight}></input>
+                        <input className="box" type='number' name='ammoWeight' onChange={this.handleChange} value={this.state.ammoWeight}></input>
                             </td>
                         </tr>
                         <tr>
@@ -102,7 +102,7 @@ render() {
                         <label>Barrel Length:</label>
                             </td>
                             <td>
-                        <input type='number' name='barrelLength' onChange={this.handleChange} value={this.state.barrelLength}></input>
+                        <input className="box" type='number' name='barrelLength' onChange={this.handleChange} value={this.state.barrelLength}></input>
                             </td>
                         </tr>
                         <tr>
@@ -110,7 +110,7 @@ render() {
                         <label>Current Zero:</label>
                             </td>
                             <td>
-                        <input type='number' name='currentZero' onChange={this.handleChange} value={this.state.currentZero}></input>
+                        <input className="box" type='number' name='currentZero' onChange={this.handleChange} value={this.state.currentZero}></input>
                             </td>
                         </tr>
                         <tr>
@@ -118,7 +118,7 @@ render() {
                         <label>Wind Speed:</label>
                             </td>
                             <td>
-                        <input type='number' name='windSpeed' onChange={this.handleChange} value={this.state.windSpeed}></input>
+                        <input className="box" type='number' name='windSpeed' onChange={this.handleChange} value={this.state.windSpeed}></input>
                             </td>
                         </tr>
                         <tr>
@@ -126,7 +126,7 @@ render() {
                         <label>Bore to Sight:</label>
                             </td>
                             <td>
-                        <input type='number' name='boreToSight' onChange={this.handleChange} value={this.state.boreToSight}></input>
+                        <input className="box" type='number' name='boreToSight' onChange={this.handleChange} value={this.state.boreToSight}></input>
                             </td>
                         </tr>
                         <tr>
@@ -134,12 +134,12 @@ render() {
                         <label>Shot Angle:</label>
                             </td>
                             <td>
-                        <input type='number' name='shotAngle' onChange={this.handleChange} value={this.state.shotAngle}></input>
+                        <input className="box" type='number' name='shotAngle' onChange={this.handleChange} value={this.state.shotAngle}></input>
                             </td>
                         </tr>
                         </tbody>
                         </table>
-                        <input type="submit" value='Add Rifle Build'/>
+                        <input className="add" type="submit" value='Add Rifle Build'/>
                     </form>
                     <div>
                         <ul>

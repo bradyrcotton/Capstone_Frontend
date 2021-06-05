@@ -53,11 +53,13 @@ class Login extends Component {
     return (                   
             <div>
                 <form className='login'  onSubmit={this.handleSubmit}>
-                    <label>Username:</label>
-                    <input type='text' name='userName' onChange={this.handleChange} value={this.state.userName}></input>
-                    <label>Password:</label>
-                    <input type='text' name='password' onChange={this.handleChange} value={this.state.password}></input>
-                    <input type="submit" value='Login'/>
+                    <label className="username">Username:</label>
+                    <input className="uBox" type='text' name='userName' onChange={this.handleChange} value={this.state.userName}></input>
+                    <br></br>
+                    <label className="password">Password:</label>
+                    <input className="pBox" type='text' name='password' onChange={this.handleChange} value={this.state.password}></input>
+                    <br></br>
+                    <input className='lButton' type="submit" value='Login'/>
                     
                 </form>
             </div>
