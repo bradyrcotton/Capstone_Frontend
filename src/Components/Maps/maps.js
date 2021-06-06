@@ -8,6 +8,7 @@ import{
   InfoWindow,
 } from "@react-google-maps/api";
 import {formatRelative} from "date-fns";
+import axios from 'axios';
 
 // import usePlacesAutocomplete, {
 //   getGeocode,
@@ -63,7 +64,11 @@ export default function GMap() {
   const [selected, setSelected] = React.useState(null);
 
   
-
+  const myLatLng = React.useCallback(({lat, lng}) => {
+    // myLat : ({lat})
+    // myLng : ({lng})
+    
+  })
 
   const mapRef = React.useRef();
   const onMapLoad = React.useCallback((map) => {
@@ -72,6 +77,7 @@ export default function GMap() {
   const panTo = React.useCallback(({lat, lng}) => {
     mapRef.current.panTo({lat, lng})
     mapRef.current.setZoom(18);
+    
   }, []);
   if (loadError) return "Error loading maps";
   if (!isLoaded) return "Loading Maps";
@@ -108,41 +114,32 @@ return (<div>
      {markers.map(marker => <Marker key={marker.time.toISOString()}
       position={{lat: marker.lat, lng:marker.lng }}
       onClick={() => {
-        setSelected(marker)
-        clicks.dist= getPreciseDistance(
-          {latitude: marker.lat, longitude:marker.lng},
-          {latitude:36.066631802416566, longitude:-93.72612898997339},
+        
+        console.log ('myLat', myLatLng.myLat)
+        navigator.geolocation.getCurrentPosition(
+          (position) => {
+            
+            myLatLng({
+              lat: position.coords.latitude,
+              lng: position.coords.longitude,
+            });
+            
           
-          )
-          console.log(marker.lat, marker.lng)
-          console.log(clicks.dist)
-          clicks.t = 0 // flight time to target
-          clicks.h = 0 //drop in inches
-          clicks.d = 0 // distance in yards      
-          // clicks.cz = 0, // current zero
-          clicks.m = 0 // number of mil adjustment needed 
-          clicks.c = 0 // number of "clicks" needed to adjust
-          // clicks.sc = 0, // scope type in clicks "4 or 10"
-          clicks.y = 0 // for converting meters to yards 
-          // clicks.dist = 0, // distance
-          clicks.y = clicks.dist * 1.0936133 // converting distance from meters to yards
-          clicks.y=Math.round(clicks.y);
-          console.log('yards',clicks.y)
-          if(clicks.y !== 0){
-            clicks.d=clicks.y
-          }
-          console.log('conyards',clicks.d)
-          clicks.t = ((clicks.d*3)-clicks.cz)/3020
-          console.log('time',clicks.t)
-          clicks.h= (.5*(32*(clicks.t)^2))*12
-          console.log('drop',clicks.h)
-          clicks.m = clicks.h / ((clicks.d/25)*.9)
-          console.log('mils',clicks.m)
-          clicks.c = (clicks.m*clicks.sc)/2;
-          clicks.c=Math.round(clicks.c);
-              console.log('dist', clicks.c)
-      }}
-       />)}
+            clicks.dist= getPreciseDistance(
+              {latitude: marker.lat, longitude:marker.lng},
+              {latitude:position.coords.latitude, longitude:position.coords.longitude},
+              
+              )
+              console.log(clicks.dist)
+              calculate();
+              setSelected(marker)
+            }
+            );
+            
+              
+              
+          }}
+          />)}
        {selected ? (
        <InfoWindow position={{lat: selected.lat, lng: selected.lng }} onCloseClick={() => {setSelected(null);}}>
          <div>
@@ -162,23 +159,56 @@ function Locate({panTo}) {
   onClick={() => {
     navigator.geolocation.getCurrentPosition(
       (position) => {
+        
+        
         panTo({
           lat: position.coords.latitude,
           lng: position.coords.longitude,
         });
       },
       () => null
-     );
+      );
   }}>
     <span role="img" aria-label="target"  >
     🎯
     </span>
     </button>
-    
+  
   );
 }
 
 function refreshPage() {
   window.location.reload();
 }
+function calculate(){
+  clicks.t = 0 // flight time to target
+  clicks.h = 0 //drop in inches
+  clicks.d = 0 // distance in yards      
+  // clicks.cz = 0, // current zero
+  clicks.m = 0 // number of mil adjustment needed 
+  clicks.c = 0 // number of "clicks" needed to adjust
+  // clicks.sc = 0, // scope type in clicks "4 or 10"
+  clicks.y = 0 // for converting meters to yards 
+  // clicks.dist = 0, // distance
+  clicks.y = clicks.dist * 1.0936133 // converting distance from meters to yards
+  clicks.y=Math.round(clicks.y);
+  console.log('yards',clicks.y)
+  if(clicks.y !== 0){
+    clicks.d=clicks.y
+  }
+  console.log('conyards',clicks.d)
+  clicks.t = ((clicks.d*3)-clicks.cz)/3020
+  console.log('time',clicks.t)
+  clicks.h= (.5*(32*(clicks.t)^2))*12
+  console.log('drop',clicks.h)
+  clicks.m = clicks.h / ((clicks.d/25)*.9)
+  console.log('mils',clicks.m)
+  clicks.c = (clicks.m*clicks.sc)/2;
+  clicks.c=Math.round(clicks.c);
+      console.log('dist', clicks.y)
+  
+  
+  }
 
+
+// 30.382928577552498, -86.50185077047078
