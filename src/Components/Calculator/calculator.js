@@ -108,7 +108,7 @@ calculate(range){
                         <label>Range:</label>
                             </td>
                             <td>
-                        <input type='number' name='blank' onChange={this.handleChange} value={this.state.blank}></input>
+                        <input className="uBox" type='number' name='blank' onChange={this.handleChange} value={this.state.blank}></input>
                             </td>
                         </tr>
                         </tbody>
