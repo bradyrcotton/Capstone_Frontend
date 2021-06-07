@@ -113,18 +113,18 @@ calculate(range){
                         </tr>
                         </tbody>
                         </table>
-                        <input type="submit" value='Calculate' onClick={() =>this.calculate(this.state.d)}/>
+                        <input className="calc" type="submit" value='Calculate' onClick={() =>this.calculate(this.state.d)}/>
                         </form>
                         <h2>Adjustment for Range: {this.state.c} Clicks </h2>
                         <ul>
                             {this.props.filteredRifles.map((rifles, index) =>(
-                                <button onClick={() => this.addToStorage(rifles.id)}>
+                                <button className="calc" onClick={() => this.addToStorage(rifles.id)}>
                                     Rifle, {rifles.id} 
                                 </button>
                             ))}
                         </ul>
-                        <button onClick={() => this.ballisticsTable()}>Table</button>
-                        <button onClick={this.refreshPage}>Clear</button>
+                        <button className="calc" onClick={() => this.ballisticsTable()}>Table</button>
+                        <button className="calc" onClick={this.refreshPage}>Clear</button>
                                 <table className="table table-dark table-striped">
                                     <thead>
                                     <tr>

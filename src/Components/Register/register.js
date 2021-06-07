@@ -40,12 +40,14 @@ class Register extends Component {
         return (                   
                 <div>
                     
+                        <h1>Register New User</h1>
+                        
                     <form onSubmit={this.handleSubmit}>
-                        <label>Username:</label>
-                        <input type='text' name='userName' onChange={this.handleChange} value={this.state.userName}></input>
-                        <label>Password:</label>
-                        <input type='text' name='password' onChange={this.handleChange} value={this.state.password}></input>
-                        <input type="submit" value='Register'/>
+                        <label className="username" >Username:</label>
+                        <input className="uBox" type='text' name='userName' onChange={this.handleChange} value={this.state.userName}></input>
+                        <label className="password">Password:</label>
+                        <input className="pBox" type='text' name='password' onChange={this.handleChange} value={this.state.password}></input>
+                        <input className="calc" type="submit" value='Register'/>
                     </form>
                 </div>
         )

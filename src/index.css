@@ -1,7 +1,5 @@
 h1 {
-    position: absolute;
-    top: 8rem;
-    left: 1rem;
+    position: relative;
     color: #ec0b0b;
     z-index: 2;
     margin: 0;
@@ -19,4 +17,15 @@ h1 {
     color: #8097a0;
   }
   
-  
+  .calc{
+    color: #899da0;
+    background-color: #343a40;
+    border-radius: 10px;
+    position: relative;
+}
+.delete{
+    color: #ffffff;
+    background-color: #f70808;
+    border-radius: 10px;
+    position: relative;
+}

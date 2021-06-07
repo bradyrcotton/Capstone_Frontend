@@ -59,7 +59,8 @@ class Login extends Component {
                     <label className="password">Password:</label>
                     <input className="pBox" type='text' name='password' onChange={this.handleChange} value={this.state.password}></input>
                     <br></br>
-                    <input className='lButton' type="submit" value='Login'/>
+                    <input className='lButton' type="submit" value='Login'/> <button className="calc" onClick={() => window.location='/register'}>Register</button>
+                    
                     
                 </form>
             </div>

@@ -133,8 +133,8 @@ class Dope extends Component {
                 </table>
                 <input className="add" type="submit" value='Add Dope'/>
             </form>
-            <button onClick={() => this.dopeBook()}>Dope Table</button>
-            <button onClick={this.refreshPage}>Update</button>
+            <button className="calc" onClick={() => this.dopeBook()}>Dope Table</button>
+            <button className="calc" onClick={this.refreshPage}>Update</button>
             <table className="table table-dark table-striped">
                                     <thead>
                                     <tr>
@@ -151,7 +151,7 @@ class Dope extends Component {
                                             <td>{dope.scopeAdjustment}</td>
                                             <td>{dope.distance}</td> 
                                             <td>{dope.currentZero}</td>  
-                                            <td><button onClick={() => this.deleteDope(dope.id)}>Delete </button> </td>
+                                            <td><button className="delete" onClick={() => this.deleteDope(dope.id)}>Delete </button> </td>
                                         </tr>
                                     </tbody>
                                 ))} 
