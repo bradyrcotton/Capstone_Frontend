@@ -31,14 +31,10 @@ class App extends Component {
         this.getAllRifles();
         this.filterRifles.bind(this);
         this.getAllDope();
-        // this.filterDope.bind(this);
+        
         
     }
-    // componentDidUpdate(prevProps, prevState) {
-        //     if (prevState.filteredRifles !== this.state.filteredRifles) {
-            //         console.log('pokemons state has changed.')
-            //     }
-            // }
+    
             
             async getAllShooters(){
                 let response = await axios.get('http://127.0.0.1:8000/shooter/');

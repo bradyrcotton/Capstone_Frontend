@@ -184,12 +184,9 @@ function calculate(){
   clicks.t = 0 // flight time to target
   clicks.h = 0 //drop in inches
   clicks.d = 0 // distance in yards      
-  // clicks.cz = 0, // current zero
   clicks.m = 0 // number of mil adjustment needed 
   clicks.c = 0 // number of "clicks" needed to adjust
-  // clicks.sc = 0, // scope type in clicks "4 or 10"
   clicks.y = 0 // for converting meters to yards 
-  // clicks.dist = 0, // distance
   clicks.y = clicks.dist * 1.0936133 // converting distance from meters to yards
   clicks.y=Math.round(clicks.y);
   console.log('yards',clicks.y)
@@ -209,6 +206,3 @@ function calculate(){
   
   
   }
-
-
-// 30.382928577552498, -86.50185077047078

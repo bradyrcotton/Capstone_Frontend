@@ -99,7 +99,7 @@ calculate(range){
     render() { 
         return ( 
             <div>
-                {/* <h1>Calculator</h1> */}
+                
             <form className='blackbox-form' onSubmit={this.handleSubmit}>
                         <table>
                         <tbody>

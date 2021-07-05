@@ -34,11 +34,7 @@ class Dope extends Component {
         debugger;
         this.props.filterDope(pshooter)
         }
-        // this.props.getAllDope()
-        // this.props.filterDope(this.state.shooter)
-        // this.setState({
-        //     filteredDope : this.props.filteredDope
-        // });
+        
     }
     handleChange(event) {
         this.setState({
@@ -76,10 +72,7 @@ class Dope extends Component {
     }
     
         
-    // console.log(
-    //         'outside callback',
-    //         this.props.filteredDope
-    //         );
+    
     }
     refreshPage() {
         window.location.reload();

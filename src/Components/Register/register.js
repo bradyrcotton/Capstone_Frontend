@@ -31,7 +31,7 @@ class Register extends Component {
             password: this.state.password,
         }
         this.createNewShooter(user);
-        window.location = '/login';
+        window.location = '/';
         
 
     }
