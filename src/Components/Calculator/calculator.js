@@ -42,14 +42,12 @@ ballisticsTable(){
         if (r === 0){
             r = 25
         }
-        // debugger;
+        
         this.calculate(r)
        
         
     }
-    // <div>
-    //     {this.state.bTable.map(yards) => (yards)}
-    // </div>
+   
 }
 addNewItem = (c) => {
     let {bTable} = this.state;
@@ -77,7 +75,7 @@ calculate(range){
     m = h / ((d/25)*.9)
     c = (m*sc)/2;
     c=Math.round(c);
-        // debugger;
+        
     this.setState({
         c:c
     })

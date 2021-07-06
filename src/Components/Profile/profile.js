@@ -172,18 +172,3 @@ export default Profile;
 
 
 
-// for (let i=0; i<this.props.rifle.length; i++){
-//     if (this.props.rifle[i].shooter === this.props.location.state.shooter){
-//         console.log('cal',this.props.rifle[i].caliber);
-//         debugger;
-//         rifles = this.props.rifle[i]
-//         this.setState({
-       
-//         rifle: rifles
-        
-        
-        
-//     });
-        
-//     }
-// }

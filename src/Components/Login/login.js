@@ -24,10 +24,6 @@ class Login extends Component {
       });
     }
     
-    
-
-    
-    
     handleSubmit(event) {
     event.preventDefault();
 
@@ -60,8 +56,6 @@ class Login extends Component {
                     <input className="pBox" type='text' name='password' onChange={this.handleChange} value={this.state.password}></input>
                     <br></br>
                     <input className='lButton' type="submit" value='Login'/> <button className="calc" onClick={() => window.location='/register'}>Register</button>
-                    
-                    
                 </form>
             </div>
     )
