@@ -31,8 +31,8 @@ class Profile extends Component {
         
     }
     addToStorage(id){
-        debugger;
         localStorage.setItem('rifle', id );
+        
 }
     async createNewRifle(rifle){
         await axios.post('http://127.0.0.1:8000/rifle/',rifle);
@@ -63,6 +63,9 @@ class Profile extends Component {
 
 
 render() {
+    if (localStorage.getItem("shooter") === null ){
+        window.location ='/'
+    }
     
                  let rifles = [this.props.filteredRifles];
                 

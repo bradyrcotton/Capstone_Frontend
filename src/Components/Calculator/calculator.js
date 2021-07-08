@@ -94,7 +94,10 @@ calculate(range){
     refreshPage() {
         window.location.reload();
       }
-    render() { 
+    render() {
+        if (localStorage.getItem("shooter") === null ){
+            window.location ='/'
+        } 
         return ( 
             <div>
                 

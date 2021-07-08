@@ -10,17 +10,7 @@ import{
 import {formatRelative} from "date-fns";
 import axios from 'axios';
 
-// import usePlacesAutocomplete, {
-//   getGeocode,
-//   getLatLng,
-// } from "use-places-autocomplete";
-// import {
-//   Combobox,
-//   ComboboxInput,
-//   ComboboxPopover,
-//   ComboboxList,
-//   ComboboxOption,
-// } from "@reach/combobox"
+
 import "@reach/combobox/styles.css";
 
 const libraries = ["places"];
@@ -81,16 +71,13 @@ export default function GMap() {
   }, []);
   if (loadError) return "Error loading maps";
   if (!isLoaded) return "Loading Maps";
-
+  if (localStorage.getItem("shooter") === null ){
+    window.location ='/'
+  }
   
 return (<div>
   {console.log('selected', selected)}
-  {/* <h1>
-    Marker Your Target{" "}
-    <span role="img" aria-label="target" >
-    🎯
-    </span>
-  </h1> */}
+  
   <Locate panTo={panTo} />
   <GoogleMap 
   mapContainerStyle={mapContainerStyle} 

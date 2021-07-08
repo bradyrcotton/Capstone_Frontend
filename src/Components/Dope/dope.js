@@ -83,6 +83,8 @@ class Dope extends Component {
         this.props.getAllDope();
     }
     render() { 
+        if (localStorage.getItem("shooter") === null ){
+            window.location ='/'}
         
       console.log('fdope',this.props.filteredDope)
         
