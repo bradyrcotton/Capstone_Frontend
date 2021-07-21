@@ -17,6 +17,7 @@ class Profile extends Component {
             windSpeed:null,
             boreToSight:null,
             shotAngle:null,
+            rifleName:null,
             shooter:null,
             shooterId:" "
             
@@ -53,6 +54,7 @@ class Profile extends Component {
             windSpeed:this.state.windSpeed,
             boreToSight:this.state.boreToSight,
             shotAngle:this.state.shotAngle,
+            rifleName:this.state.rifleName,
             shooter: this.props.location.state.shooter
         }
         this.createNewRifle(rifle)
@@ -140,6 +142,14 @@ render() {
                         <input className="box" type='number' name='shotAngle' onChange={this.handleChange} value={this.state.shotAngle}></input>
                             </td>
                         </tr>
+                        <tr>
+                            <td>
+                        <label>Rifle Name:</label>
+                            </td>
+                            <td>
+                        <input className="box" type='number' name='rifleName' onChange={this.handleChange} value={this.state.rifleName}></input>
+                            </td>
+                        </tr>
                         </tbody>
                         </table>
                         <input className="add" type="submit" value='Add Rifle Build'/>
@@ -148,7 +158,7 @@ render() {
                         <ul>
                             {this.props.filteredRifles.map((rifles, index) =>(
                                 <button className="calc" onClick={() => this.addToStorage(rifles.id)}>
-                                    Rifle, {rifles.id} 
+                                    Rifle, {rifles.name} 
                                 </button>
                             ))}
                         </ul>
