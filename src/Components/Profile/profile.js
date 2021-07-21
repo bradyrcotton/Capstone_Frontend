@@ -19,7 +19,7 @@ class Profile extends Component {
             shotAngle:null,
             rifleName:null,
             shooter:null,
-            shooterId:" "
+            shooterId:localStorage.getItem('shooter')
             
         }
         this.handleChange = this.handleChange.bind(this);
