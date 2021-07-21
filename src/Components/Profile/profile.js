@@ -37,6 +37,10 @@ class Profile extends Component {
 }
     async createNewRifle(rifle){
         await axios.post('http://127.0.0.1:8000/rifle/',rifle);
+        this.props.filterRifles();
+        this.setState({
+            shooterId: this.props.shooterId
+        })
     }
     handleChange(event) {
         this.setState({
@@ -69,9 +73,11 @@ render() {
         window.location ='/'
     }
     
-                 let rifles = [this.props.filteredRifles];
-                 console.log(rifles);
-                
+    let rifles = [this.props.filteredRifles];
+    console.log(rifles);
+    // while(rifles = []){
+    //     console.log('loading')
+    // }            
              
             console.log('filter', this.props.filteredRifles)
             return (

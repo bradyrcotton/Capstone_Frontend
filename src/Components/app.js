@@ -54,18 +54,24 @@ class App extends Component {
         })
     }
         filterRifles(shooterId){
+            this.getAllRifles();
+            let rifle = this.state.rifle;
 
             let i=0;
-            let filteredRifles = this.state.rifle.filter(() =>{
-                if (this.state.rifle[i].shooter === shooterId){
-                    i++
-                    return true;
-                }
-                else{
-                    i++
-                    return false;
-                }
-            })
+            let filteredRifles = this.state.rifle.filter((rifle) =>{
+                for( let j=0; j < this.state.rifle.length; j++){
+                    if (this.state.rifle[i].shooter === shooterId){
+                        i++
+                        return true;
+                     }
+                    else{
+                        i++
+                        return false;
+                        }
+                    }
+                })
+            
+        
             this.setState({
                 filteredRifles : filteredRifles
             })

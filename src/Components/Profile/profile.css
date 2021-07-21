@@ -31,7 +31,8 @@ body {
     background: #6c99d2;
 }
 .blackbox-form{
-  color:#d2ccbc;
+  color:black;
+  font-weight: bold;
   font-size: 20px;
   
 }
