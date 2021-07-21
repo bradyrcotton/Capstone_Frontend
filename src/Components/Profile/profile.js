@@ -70,6 +70,7 @@ render() {
     }
     
                  let rifles = [this.props.filteredRifles];
+                 console.log(rifles);
                 
              
             console.log('filter', this.props.filteredRifles)
@@ -147,7 +148,7 @@ render() {
                         <label>Rifle Name:</label>
                             </td>
                             <td>
-                        <input className="box" type='number' name='rifleName' onChange={this.handleChange} value={this.state.rifleName}></input>
+                        <input className="box" type='text' name='rifleName' onChange={this.handleChange} value={this.state.rifleName}></input>
                             </td>
                         </tr>
                         </tbody>
@@ -158,7 +159,7 @@ render() {
                         <ul>
                             {this.props.filteredRifles.map((rifles, index) =>(
                                 <button className="calc" onClick={() => this.addToStorage(rifles.id)}>
-                                    Rifle, {rifles.name} 
+                                    {rifles.rifleName} 
                                 </button>
                             ))}
                         </ul>

@@ -54,10 +54,9 @@ class App extends Component {
         })
     }
         filterRifles(shooterId){
-            let rifle = this.state.rifle;
 
             let i=0;
-            let filteredRifles = this.state.rifle.filter((rifle) =>{
+            let filteredRifles = this.state.rifle.filter(() =>{
                 if (this.state.rifle[i].shooter === shooterId){
                     i++
                     return true;
