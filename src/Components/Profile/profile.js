@@ -75,9 +75,7 @@ render() {
     
     let rifles = [this.props.filteredRifles];
     console.log(rifles);
-    // while(rifles = []){
-    //     console.log('loading')
-    // }            
+               
              
             console.log('filter', this.props.filteredRifles)
             return (
