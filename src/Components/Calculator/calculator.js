@@ -73,7 +73,7 @@ calculate(range){
     t = (d*3-cz)/3020
     h= (.5*(32*(t)^2))*12
     m = h / ((d/25)*.9)
-    c = (m*sc)/2;
+    c = (m*sc)/1.5;
     c=Math.round(c);
         
     this.setState({
