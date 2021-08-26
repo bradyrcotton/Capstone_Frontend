@@ -8,8 +8,8 @@ class Calculator extends Component {
         this.state = { 
             t : 0, // flight time to target
             h : 0, //drop in inches
-            d : 631, // distance in yards      
-            cz : 100, // current zero
+            d : 0, // distance in yards      
+            cz : 0, // current zero
             m : 0, // number of mil adjustment needed 
             c : 0, // number of "clicks" needed to adjust
             sc : 10, // scope type in clicks "4 or 10"
@@ -70,7 +70,7 @@ calculate(range){
          
     
 
-    t = (d*3-cz)/3020
+    t = (d*3-cz)/3000
     h= (.5*(32*(t)^2))*12
     m = h / ((d/25)*.9)
     c = (m*sc)/1.5;
