@@ -9,10 +9,10 @@ class Calculator extends Component {
             t : 0, // flight time to target
             h : 0, //drop in inches
             d : 0, // distance in yards      
-            cz : 0, // current zero
+            cz : 0 , // current zero
             m : 0, // number of mil adjustment needed 
             c : 0, // number of "clicks" needed to adjust
-            sc : 10, // scope type in clicks "4 or 10"
+            sc : 0, // scope type in clicks "4 or 10"
             y : 0, // for converting meters to yards 
             shooterId : 0,
             bTable: [],
@@ -36,7 +36,7 @@ class Calculator extends Component {
 }
         
 ballisticsTable(){
-    for (let i=0; i < 41; i++){
+    for (let i=0; i < 40; i++){
         let r = 25*i
         this.rangeCardYards(r)
         if (r === 0){
@@ -136,7 +136,7 @@ calculate(range){
                                     {this.state.bTable.map((ranges, index )=> (
                                     <tbody>
                                         <tr>
-                                            <td>{index * 25}</td>
+                                            <td>{index + 1  * 25}</td>
                                             <td>{[ranges]}</td>
                                         </tr>
                                     </tbody>
