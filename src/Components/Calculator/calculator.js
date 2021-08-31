@@ -36,7 +36,7 @@ class Calculator extends Component {
 }
         
 ballisticsTable(){
-    for (let i=0; i < 40; i++){
+    for (let i=0; i < 41; i++){
         let r = 25*i
         this.rangeCardYards(r)
         if (r === 0){
@@ -136,7 +136,7 @@ calculate(range){
                                     {this.state.bTable.map((ranges, index )=> (
                                     <tbody>
                                         <tr>
-                                            <td>{index + 1  * 25}</td>
+                                            <td>{index  * 25}</td>
                                             <td>{[ranges]}</td>
                                         </tr>
                                     </tbody>
