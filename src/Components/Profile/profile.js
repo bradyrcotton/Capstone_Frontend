@@ -162,7 +162,7 @@ render() {
                     <div>
                         <ul>
                             {this.props.filteredRifles.map((rifles, index) =>(
-                                <button className="calc" onClick={() => this.addToStorage(rifles.id)}>
+                                <button className="rifleSelect" onClick={() => this.addToStorage(rifles.id) }>
                                     {rifles.rifleName} 
                                 </button>
                             ))}

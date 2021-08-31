@@ -47,3 +47,21 @@ body {
   margin-left: 250px;
   position: relative;
 }
+.rifleSelect{
+  color: #899da0;
+    background-color: #343a40;
+    border-radius: 10px;
+    position: relative;
+}
+.rifleSelect:hover{
+  color: #899da0;
+    background-color: #dcf500;
+    border-radius: 10px;
+    position: relative;
+}
+.rifleSelect:focus{
+  color: #899da0;
+    background-color: #00f014;
+    border-radius: 10px;
+    position: relative;
+}
