@@ -24,12 +24,12 @@ class Profile extends Component {
         }
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        // debugger;
         let shooterId = localStorage.getItem('shooter');
         this.setState({ shooterId : shooterId });
-        console.log('locsl', this.state.shooterId)
-        let pshooterId = parseInt(shooterId)
-        this.props.filterRifles(pshooterId)
-        
+        console.log('locsl', this.state.shooterId);
+        let pshooterId = parseInt(shooterId);
+        this.props.filterRifles(pshooterId);
     }
     addToStorage(id){
         localStorage.setItem('rifle', id );
@@ -65,7 +65,7 @@ class Profile extends Component {
         
     }
     
-    
+  
 
 
 render() {
@@ -161,7 +161,7 @@ render() {
                     </form>
                     <div>
                         <ul>
-                            {this.props.filteredRifles.map((rifles, index) =>(
+                            {this.props.filteredRifles.map((rifles) =>(
                                 <button className="rifleSelect" onClick={() => this.addToStorage(rifles.id) }>
                                     {rifles.rifleName} 
                                 </button>

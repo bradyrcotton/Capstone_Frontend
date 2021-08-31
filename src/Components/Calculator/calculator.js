@@ -60,6 +60,9 @@ rangeCardYards = (r) => {
     console.log('yards', this.state.yards)
 }
 calculate(range){
+        if(range === 0){
+            this.calculate(this.state.d)
+        }
         let t = this.state.t; // flight time to target
         let h = this.state.h; //drop in inches
         let d = range; // distance in yards      
