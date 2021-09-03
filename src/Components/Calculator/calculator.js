@@ -19,11 +19,12 @@ class Calculator extends Component {
             yards: [],
             blank:''
          }
+        // this.selectedRifle();
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.calculate=this.calculate.bind(this);
         this.addNewItem=this.addNewItem.bind(this);
-
+        this.props.filterSelectedRifle(2);
         let shooterId = localStorage.getItem('shooter');
         this.setState({ shooterId : shooterId });
         let pshooterId = parseInt(shooterId)
@@ -62,6 +63,11 @@ rangeCardYards = (r) => {
     console.log('yards', this.state.yards)
     
 }
+// selectedRifle(){
+//     debugger;
+//     let rifle = localStorage.getItem("rifle")
+//     this.props.filterSelectedRifle(rifle);
+// }
 calculate(range){
         // if(range === 0){
         //     this.calculate(this.state.d)
@@ -104,6 +110,8 @@ calculate(range){
         if (localStorage.getItem("shooter") === null ){
             window.location ='/'
         } 
+        // let sRifle = localStorage.getItem("rifle")
+        // this.props.filterSelectedRifle(sRifle);
         return ( 
             <div>
                 

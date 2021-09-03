@@ -33,6 +33,7 @@ class App extends Component {
         this.getAllRifles();
         this.filterRifles.bind(this);
         this.getAllDope();
+        this.filterSelectedRifle.bind(this);
         
         
     }
@@ -55,28 +56,7 @@ class App extends Component {
         })
     }
 
-    filterSelectedRifle(rifleId){
-        this.getAllRifles();
-        let i = 0
-        let selectedRifle = this.state.rifle.filter((rifle) =>{
-            for( let j=0; j < this.state.rifle.length; j++){
-                if (this.state.rifle[i].id === rifleId){
-                    i++
-                    return true;
-                    }
-                else{
-                    i++
-                    return false;
-                    }
-                }
-            })
-        
     
-        this.setState({
-            selectedRifle : selectedRifle
-        })
-        console.log('select',selectedRifle)
-    }
     
     filterRifles(shooterId){
         this.getAllRifles();
@@ -101,6 +81,28 @@ class App extends Component {
     
         this.setState({
             filteredRifles : filteredRifles
+        })
+        
+    }
+    filterSelectedRifle(rifleId){
+        this.getAllRifles();
+        let i = 0
+        let selectedRifle = this.state.rifle.filter((rifle) =>{
+            for( let j=0; j < this.state.rifle.length; j++){
+                if (this.state.rifle[i].id === rifleId){
+                    i++
+                    return true;
+                    }
+                else{
+                    i++
+                    return false;
+                    }
+                }
+            })
+        
+        console.log('select',selectedRifle)
+        this.setState({
+            selectedRifle : selectedRifle
         })
         
     }
@@ -148,7 +150,7 @@ class App extends Component {
                 <Route path="/" exact render={props => <Login {...props} shooter={this.state.shooter} getAllShooters={() => this.getAllShooters()}/>}/>
                 <Route path='/register' component={Register}/>
                 <Route path='/profile' render={props => <Profile {...props} filteredRifles={this.state.filteredRifles} filterRifles={this.filterRifles.bind(this)} getAllRifles={() => this.getAllRifles()}/>}/>
-                <Route path='/calculator' render={props => <Calculator {...props} filteredRifles={this.state.filteredRifles} filterRifles={this.filterRifles.bind(this)} selectedRifle={this.state.selectedRifle} FilteredSelectedRifle={this.state.FilterSelectedRifle.bind(this)} getAllRifles={() => this.getAllRifles()}/> }/>
+                <Route path='/calculator' render={props => <Calculator {...props} filteredRifles={this.state.filteredRifles} filterRifles={this.filterRifles.bind(this)} selectedRifle={this.state.selectedRifle} filterSelectedRifle={() => this.filterSelectedRifle()} getAllRifles={() => this.getAllRifles()}/> }/>
                 <Route path='/map' render={props => <GMap {...props} filteredRifles={this.state.filteredRifles}/>}/>
                 <Route path='/dope' render={props => <Dope {...props} filterDope={this.filterDope.bind(this)}  filteredDope={this.state.filteredDope} getAllDope={() =>this.getAllDope()} />}/>
                 <Route path="/logout" component={Logout} />
