@@ -52,7 +52,7 @@ addNewItem = (c) => {
     if(yards.length < 42){
     let {bTable} = this.state;
     bTable.push(c);
-    console.log('btable',this.state.bTable)
+    
     }
     
 }
@@ -60,7 +60,7 @@ rangeCardYards = (r) => {
     let {yards} = this.state;
     
     yards.push(r);
-    console.log('yards', this.state.yards)
+    
     
 }
 // selectedRifle(){

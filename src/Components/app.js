@@ -100,11 +100,11 @@ class App extends Component {
                 }
             })
         
-        console.log('select',selectedRifle)
+        
         this.setState({
             selectedRifle : selectedRifle
         })
-        
+        console.log('select',this.state.selectedRifle)
     }
     async getAllDope(){
         let response = await axios.get('http://127.0.0.1:8000/dope/');
