@@ -23,7 +23,8 @@ class App extends Component {
         filteredRifles: [],
         bTable: [],
         dope: [],
-        filteredDope: []
+        filteredDope: [],
+        selectedRifle:[]
     }
     componentDidMount(){
         console.log("component did mount");
@@ -54,7 +55,10 @@ class App extends Component {
         })
     }
 
-    
+    filterSelectedRifle(rifleID){
+        this.getAllRifles();
+
+    }
     filterRifles(shooterId){
         this.getAllRifles();
         
