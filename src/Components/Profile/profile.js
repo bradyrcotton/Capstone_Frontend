@@ -74,7 +74,7 @@ render() {
     }
     
     let rifles = [this.props.filteredRifles];
-    console.log(rifles);
+    
                
              
             console.log('filter', this.props.filteredRifles)

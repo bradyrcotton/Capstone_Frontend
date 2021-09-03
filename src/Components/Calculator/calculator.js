@@ -36,13 +36,10 @@ class Calculator extends Component {
 }
         
 ballisticsTable(){
+    debugger;
     for (let i=0; i < 41; i++){
         let r = 25*i
         this.rangeCardYards(r)
-        if (r === 0){
-            r = 25
-        }
-        
         this.calculate(r)
        
         
@@ -60,9 +57,9 @@ rangeCardYards = (r) => {
     console.log('yards', this.state.yards)
 }
 calculate(range){
-        if(range === 0){
-            this.calculate(this.state.d)
-        }
+        // if(range === 0){
+        //     this.calculate(this.state.d)
+        // }
         let t = this.state.t; // flight time to target
         let h = this.state.h; //drop in inches
         let d = range; // distance in yards      
