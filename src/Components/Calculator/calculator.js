@@ -8,11 +8,11 @@ class Calculator extends Component {
         this.state = { 
             t : 0, // flight time to target
             h : 0, //drop in inches
-            d : 0, // distance in yards      
-            cz : 0 , // current zero
+            d : 600, // distance in yards      
+            cz : 100 , // current zero
             m : 0, // number of mil adjustment needed 
             c : 0, // number of "clicks" needed to adjust
-            sc : 0, // scope type in clicks "4 or 10"
+            sc : 10, // scope type in clicks "4 or 10"
             y : 0, // for converting meters to yards 
             shooterId : 0,
             bTable: [],
@@ -24,7 +24,10 @@ class Calculator extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
         this.calculate=this.calculate.bind(this);
         this.addNewItem=this.addNewItem.bind(this);
-        this.props.filterSelectedRifle(2);
+        let lRifle = localStorage.getItem("rifle");
+        let sRifle = parseInt(lRifle);
+        debugger;
+        this.props.filterSelectedRifle(sRifle);
         let shooterId = localStorage.getItem('shooter');
         this.setState({ shooterId : shooterId });
         let pshooterId = parseInt(shooterId)
