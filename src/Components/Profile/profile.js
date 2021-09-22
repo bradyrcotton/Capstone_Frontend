@@ -24,7 +24,6 @@ class Profile extends Component {
         }
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-        // debugger;
         let shooterId = localStorage.getItem('shooter');
         this.setState({ shooterId : shooterId });
         console.log('locsl', this.state.shooterId);

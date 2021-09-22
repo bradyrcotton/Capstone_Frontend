@@ -180,16 +180,12 @@ function calculate(){
   if(clicks.y !== 0){
     clicks.d=clicks.y
   }
-  console.log('conyards',clicks.d)
   clicks.t = ((clicks.d*3)-clicks.cz)/3020
-  console.log('time',clicks.t)
   clicks.h= (.5*(32*(clicks.t)^2))*12
-  console.log('drop',clicks.h)
   clicks.m = clicks.h / ((clicks.d/25)*.9)
-  console.log('mils',clicks.m)
   clicks.c = (clicks.m*clicks.sc)/2;
   clicks.c=Math.round(clicks.c);
-      console.log('dist', clicks.y)
+  
   
   
   }
