@@ -40,7 +40,7 @@ class Calculator extends Component {
 }
         
 ballisticsTable(){
-    debugger;
+    
     for (let i=0; i < 41; i++){
         let r = 25*i
         this.rangeCardYards(r)
@@ -113,8 +113,7 @@ calculate(range){
         if (localStorage.getItem("shooter") === null ){
             window.location ='/'
         } 
-        // let sRifle = localStorage.getItem("rifle")
-        // this.props.filterSelectedRifle(sRifle);
+        
         return ( 
             <div>
                 
@@ -153,7 +152,7 @@ calculate(range){
                                     {this.state.bTable.map((ranges, index )=> (
                                     <tbody>
                                         <tr>
-                                            <td>{index  * 25}</td>
+                                            <td>{index * 25}</td>
                                             <td>{[ranges]}</td>
                                         </tr>
                                     </tbody>
