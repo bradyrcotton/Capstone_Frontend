@@ -7,8 +7,9 @@
       background-size: fill;
      }
     .login {
-      padding-top: 10%;
+      padding-top: 6%;
       padding-left: 35%;
+      
     }
   
     .login form {
@@ -34,12 +35,13 @@
     }
     .pBox{
       background-color: #343a40;
+      color: white;
       margin-left: 32px;
       
     }
     .uBox{
       background-color: #343a40;
-      color: green;
+      color: white;
       margin-left: 15px;
       
     }
